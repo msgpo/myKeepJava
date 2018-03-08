@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorAppBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,9 +11,9 @@
         android:layout_height="fill_parent"
         android:layout_above="@+id/footer"
         android:fillViewport="true"
-        android:paddingTop="6dp"
-        android:paddingEnd="6dp"
-        android:paddingStart="6dp" >
+        android:paddingTop="5dp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp" >
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -31,10 +32,10 @@
         android:stretchColumns="0" >
 
         <TableRow
-
             android:id="@+id/firstRow"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="fill_parent"
+            tools:ignore="UselessParent">
 
             <Button
                 android:id="@+id/create_new_note"
@@ -43,7 +44,7 @@
                 android:textAlignment="textStart"
                 android:layout_marginStart="10dp"
                 android:textAllCaps="false"
-                android:textColor="@color/light_grey"
+                android:textColor="@color/colorHint"
                 android:background="?android:attr/selectableItemBackground"
                 android:text="@string/create_new_note" />
 
@@ -52,28 +53,32 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_icon_list" />
+                android:src="@drawable/ic_icon_list"
+                android:contentDescription="@string/checkbox_notes_button" />
 
             <ImageButton
                 android:id="@+id/create_new_draw_note"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_icon_pen"/>
+                android:src="@drawable/ic_icon_pen"
+                android:contentDescription="@string/draw_notes_button" />
 
             <ImageButton
                 android:id="@+id/create_new_micro_note"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_icon_micro" />
+                android:src="@drawable/ic_icon_micro"
+                android:contentDescription="@string/micro_notes_button" />
 
             <ImageButton
                 android:id="@+id/create_new_photo_note"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_icon_photo" />
+                android:src="@drawable/ic_icon_photo"
+                android:contentDescription="@string/photo_notes_button" />
 
         </TableRow>
 

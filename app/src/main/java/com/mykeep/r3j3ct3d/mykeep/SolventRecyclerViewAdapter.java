@@ -1,20 +1,19 @@
 package com.mykeep.r3j3ct3d.mykeep;
 
-import android.content.res.Resources;
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import java.util.List;
 
 public class SolventRecyclerViewAdapter extends RecyclerView.Adapter<SolventViewHolders> {
 
     private List<ItemObjects> _itemList;
-    ViewGroup _parent;
+    private ViewGroup _parent;
 
     SolventRecyclerViewAdapter(List<ItemObjects> itemList) {
 
@@ -24,7 +23,7 @@ public class SolventRecyclerViewAdapter extends RecyclerView.Adapter<SolventView
     @Override
     public SolventViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.solvent_list, null);
+        @SuppressLint("InflateParams") View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.solvent_list, null);
 
         _parent = parent;
         return new SolventViewHolders(layoutView);
@@ -43,11 +42,6 @@ public class SolventRecyclerViewAdapter extends RecyclerView.Adapter<SolventView
         if (holder.content.getText().toString().isEmpty()) {
             holder.content.setHeight(0);
         }
-        else {
-            final float scale = _parent.getContext().getResources().getDisplayMetrics().density;
-            int pixels = (int) (80 * scale + 0.5f);
-            holder.content.setMinHeight(pixels);
-        }
 
         if (_itemList.get(position).getImage() != -1) {
             holder.image.setImageResource(_itemList.get(position).getImage());
@@ -61,40 +55,64 @@ public class SolventRecyclerViewAdapter extends RecyclerView.Adapter<SolventView
         }
 
         if (holder.content.getText().toString().length() > 0 && holder.content.getText().toString().length() < 6) {
-            Typeface typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_thin);
+            Typeface typeface = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_thin);
+            }
             holder.content.setTypeface(typeface);
             holder.content.setTextSize(70);
         }
         if (holder.content.getText().toString().length() >= 6 && holder.content.getText().toString().length() < 10) {
-            Typeface typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_light);
+            Typeface typeface = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_light);
+            }
             holder.content.setTypeface(typeface);
             holder.content.setTextSize(50);
         }
         if (holder.content.getText().toString().length() >= 10 && holder.content.getText().toString().length() < 13) {
-            Typeface typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_light);
+            Typeface typeface = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_light);
+            }
             holder.content.setTypeface(typeface);
             holder.content.setTextSize(36);
         }
         if (holder.content.getText().toString().length() >= 13 && holder.content.getText().toString().length() < 19) {
-            Typeface typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_light);
+            Typeface typeface = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_light);
+            }
             holder.content.setTypeface(typeface);
             holder.content.setTextSize(24);
         }
         if (holder.content.getText().toString().length() >= 19 && holder.content.getText().toString().length() < 24) {
-            Typeface typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_regular);
+            Typeface typeface = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_regular);
+            }
             holder.content.setTypeface(typeface);
             holder.content.setTextSize(18);
         }
         if (holder.content.getText().toString().length() >= 24) {
-            Typeface typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_regular);
+            Typeface typeface = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                typeface = _parent.getContext().getResources().getFont(R.font.roboto_slab_regular);
+            }
             holder.content.setTypeface(typeface);
             holder.content.setTextSize(16);
         }
+        if (!holder.title.getText().toString().isEmpty())
+            holder.title.setBackgroundColor(Color.parseColor(_itemList.get(position).getColor()));
+        if (!holder.content.getText().toString().isEmpty())
+            holder.content.setBackgroundColor(Color.parseColor(_itemList.get(position).getColor()));
     }
 
     @Override
     public int getItemCount() {
 
-        return _itemList.size();
+        if (_itemList != null)
+            return _itemList.size();
+        return 0;
     }
 }

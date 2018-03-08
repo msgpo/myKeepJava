@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorAppBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/footer"
+        android:fillViewport="true"
+        android:paddingTop="6dp"
+        android:paddingEnd="6dp"
+        android:paddingStart="6dp" >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+
+    </ScrollView>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/footer"
+        android:background="@color/colorBottomToolbar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0" >
+
+        <TableRow
+
+            android:id="@+id/firstRow"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <Button
+                android:id="@+id/create_new_note"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAlignment="textStart"
+                android:layout_marginStart="10dp"
+                android:textAllCaps="false"
+                android:textColor="@color/light_grey"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="@string/create_new_note" />
+
+            <ImageButton
+                android:id="@+id/create_new_checkbox_note"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_icon_list" />
+
+            <ImageButton
+                android:id="@+id/create_new_draw_note"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_icon_pen"/>
+
+            <ImageButton
+                android:id="@+id/create_new_micro_note"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_icon_micro" />
+
+            <ImageButton
+                android:id="@+id/create_new_photo_note"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_icon_photo" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

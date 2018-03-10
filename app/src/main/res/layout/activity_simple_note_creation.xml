@@ -44,157 +44,164 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_above="@id/color_scroll_view"
-        android:layout_height="1dp"
-        android:background="@android:color/black"/>
+        android:layout_above="@id/note_actions_layout"
+        android:layout_height="4dp"
+        android:background="@drawable/drop_shadow"/>
 
-    <HorizontalScrollView
-        android:id="@+id/color_scroll_view"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorBottomToolbar"
-        android:layout_above="@+id/bottom_toolbar"
-        android:scrollbars="none"
-        android:fillViewport="true" >
+    <LinearLayout
+        android:id="@+id/note_actions_layout"
+        android:layout_above="@id/bottom_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:gravity="center" >
+        <HorizontalScrollView
+            android:id="@+id/color_scroll_view"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:scrollbars="none"
+            android:fillViewport="true" >
 
-            <RadioGroup
-                android:id="@+id/color_picker_radio_group"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/color_picker_layout"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                tools:ignore="UselessParent">
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:gravity="center" >
 
-                <RadioButton
-                    android:id="@+id/default_color_checkbox"
-                    android:layout_marginStart="10dp"
-                    android:layout_width="35dp"
+                <RadioGroup
+                    android:id="@+id/color_picker_radio_group"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:checked="true"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_default"
-                    android:button="@null" />
+                    android:orientation="horizontal"
+                    tools:ignore="UselessParent">
 
-                <RadioButton
-                    android:id="@+id/red_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_red"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/default_color_checkbox"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_default"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/orange_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_orange"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/red_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_red"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/yellow_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_yellow"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/orange_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_orange"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/green_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_green"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/yellow_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_yellow"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/cyan_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_cyan"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/green_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_green"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/light_blue_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_light_blue"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/cyan_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_cyan"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/dark_blue_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_dark_blue"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/light_blue_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_light_blue"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/purple_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_purple"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/dark_blue_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_dark_blue"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/pink_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_pink"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/purple_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_purple"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/brown_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:layout_marginEnd="12dp"
-                    android:background="@drawable/checkbox_brown"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/pink_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_pink"
+                        android:button="@null" />
 
-                <RadioButton
-                    android:id="@+id/grey_color_checkbox"
-                    android:layout_width="35dp"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:background="@drawable/checkbox_grey"
-                    android:layout_marginEnd="10dp"
-                    android:button="@null" />
+                    <RadioButton
+                        android:id="@+id/brown_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/checkbox_brown"
+                        android:button="@null" />
 
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/grey_color_checkbox"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:checked="false"
+                        android:background="@drawable/checkbox_grey"
+                        android:layout_marginEnd="10dp"
+                        android:button="@null" />
 
-        </LinearLayout>
+                </RadioGroup>
 
-    </HorizontalScrollView>
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_above="@id/bottom_toolbar"
         android:layout_height="1dp"
-        android:background="@android:color/black"/>
+        android:background="#60545454" />
 
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/bottom_toolbar"
-        android:background="@color/colorBottomToolbar"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -203,12 +210,13 @@
 
         <TableRow
             android:id="@+id/firstRow"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="50dp"
             tools:ignore="UselessParent">
 
             <ImageButton
-                android:id="@+id/create_new_checkbox_note"
+                android:id="@+id/note_types_button"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
@@ -228,7 +236,7 @@
                 android:text="@string/last_modification_date" />
 
             <ImageButton
-                android:id="@+id/create_new_draw_note"
+                android:id="@+id/note_actions_button"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"

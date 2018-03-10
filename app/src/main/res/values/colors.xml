@@ -7,7 +7,9 @@
     <color name="colorAppBackground">#E6E6E6</color>
     <color name="colorBottomToolbar">#FAFAFA</color>
 
+
     <!-- Note colors -->
+    <color name="colorNoteDefault">#FAFAFA</color>
     <color name="colorNoteRed">#FF8A80</color>
     <color name="colorNoteOrange">#FFD181</color>
     <color name="colorNoteYellow">#FFFF8D</color>
@@ -19,10 +21,10 @@
     <color name="colorNotePink">#F9BBD0</color>
     <color name="colorNoteBrow">#D7CCC8</color>
     <color name="colorNoteGrey">#CFD8DD</color>
-    <color name="colorNoteDefault">#FAFAFA</color>
 
     <!-- Basic colors -->
     <color name="colorBlack">#000000</color>
+
 
     <!-- Text colors -->
     <color name="colorHint">#afafaf</color>

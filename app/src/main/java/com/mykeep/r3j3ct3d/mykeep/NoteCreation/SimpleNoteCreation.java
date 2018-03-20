@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -43,6 +42,9 @@ public class SimpleNoteCreation extends AppCompatActivity {
     String                              noteColor;
     String                              lastUpdateDateString, creationDateString;
 
+    String                              lastTitle, lastContent;
+    int                                 notePosition;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,26 +62,40 @@ public class SimpleNoteCreation extends AppCompatActivity {
         lastUpdateDateTextView = findViewById(R.id.last_modification_date);
         noteActionsButton = findViewById(R.id.note_actions_button);
 
+        Intent editionIntent = getIntent();
+        lastTitle = editionIntent.getStringExtra("title");
+        lastContent = editionIntent.getStringExtra("content");
+        String color = editionIntent.getStringExtra("color");
+        creationDateString = editionIntent.getStringExtra("creationDate");
+        notePosition = editionIntent.getIntExtra("position", -1);
+
         // Set activity default color
-        noteLayout.setBackgroundColor(getResources().getColor(R.color.colorNoteDefault));
-        noteActionsLayout.setBackgroundColor(getResources().getColor(R.color.colorNoteDefault));
-        bottomToolbar.setBackgroundColor(getResources().getColor(R.color.colorNoteDefault));
-        noteColor = "#" + Integer.toHexString(ContextCompat.getColor(getBaseContext(), R.color.colorNoteDefault));
-        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorNoteDefault)));
+        noteLayout.setBackgroundColor(Color.parseColor(color));
+        noteActionsLayout.setBackgroundColor(Color.parseColor(color));
+        bottomToolbar.setBackgroundColor(Color.parseColor(color));
+        noteColor = color;
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(color)));
         getWindow().setStatusBarColor(darkenNoteColor(Color.parseColor(noteColor), 0.7f));
 
+        // Set title and content if edit
+        titleEditText.setText(lastTitle);
+        contentEditText.setText(lastContent);
+
         // Get date
-        creationDateString = new SimpleDateFormat("ddMMyyyyhhmmss", Locale.getDefault()).format(new Date());
+        if (creationDateString.isEmpty())
+            creationDateString = new SimpleDateFormat("ddMMyyyyhhmmss", Locale.getDefault()).format(new Date());
         lastUpdateDateString = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
 
         // Set "Last Update" field content
         lastUpdateDateTextView.setText("Last update : " + lastUpdateDateString);
 
         // Open keyboard and put focus on the content edit text
-        contentEditText.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert imm != null;
-        imm.showSoftInput(contentEditText, InputMethodManager.SHOW_IMPLICIT);
+        if (lastTitle.isEmpty() && lastContent.isEmpty()) {
+            contentEditText.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.showSoftInput(contentEditText, InputMethodManager.SHOW_IMPLICIT);
+        }
 
         // Hide note actions by default
         noteActionsLayout.setVisibility(View.GONE);
@@ -167,11 +183,15 @@ public class SimpleNoteCreation extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+        Boolean changed = false;
         String titleText = titleEditText.getText().toString();
         String contentText = contentEditText.getText().toString();
 
+        if (!titleText.equals(lastTitle) || !contentText.equals(lastContent))
+            changed = true;
+
         // Check if fields are not empty
-        if (!TextUtils.isEmpty(titleText) || !TextUtils.isEmpty(contentText)) {
+        if ((!TextUtils.isEmpty(titleText) || !TextUtils.isEmpty(contentText)) && changed) {
 
 
             JSONObject noteJSON = new JSONObject();
@@ -181,6 +201,7 @@ public class SimpleNoteCreation extends AppCompatActivity {
                 noteJSON.put("noteColor", noteColor);
                 noteJSON.put("noteCreationDate", creationDateString);
                 noteJSON.put("noteLastUpdateDate", lastUpdateDateString);
+                noteJSON.put("notePosition", notePosition);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

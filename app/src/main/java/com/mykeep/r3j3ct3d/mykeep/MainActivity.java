@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -98,6 +99,12 @@ public class MainActivity extends AppCompatActivity {
         createSimpleNoteButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent simpleNoteIntent = new Intent(getApplicationContext(), SimpleNoteCreation.class);
+                simpleNoteIntent.putExtra("title", "");
+                simpleNoteIntent.putExtra("content", "");
+                simpleNoteIntent.putExtra("color", getResources().getString(R.color.colorNoteDefault));
+                simpleNoteIntent.putExtra("creationDate", "");
+                simpleNoteIntent.putExtra("position", -1);
+                // TODO
                 startActivityForResult(simpleNoteIntent, 1);
             }
         });
@@ -120,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         // Defines the enabled move directions in each state (idle, swiping, dragging).
         @Override
         public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+
             return makeFlag(ItemTouchHelper.ACTION_STATE_DRAG,
                     ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.START | ItemTouchHelper.END);
         }
@@ -140,11 +148,19 @@ public class MainActivity extends AppCompatActivity {
                 String noteColor = json.getString("noteColor");
                 String noteLastUpdateDate = json.getString("noteLastUpdateDate");
                 String noteCreationDate = json.getString("noteCreationDate");
+                int    notePosition = json.getInt("notePosition");
 
                 saveNote(noteJSON, noteCreationDate);
 
-                listViewItems.add(new ItemObjects(noteTitle, noteContent, noteColor, noteLastUpdateDate, noteCreationDate));
-                rcAdapter.notifyDataSetChanged();
+                if (notePosition > -1) {
+                    listViewItems.remove(notePosition);
+                    listViewItems.add(notePosition, new ItemObjects(noteTitle, noteContent, noteColor, noteLastUpdateDate, noteCreationDate));
+                    rcAdapter.notifyItemChanged(notePosition);
+                }
+                else {
+                    listViewItems.add(new ItemObjects(noteTitle, noteContent, noteColor, noteLastUpdateDate, noteCreationDate));
+                    rcAdapter.notifyDataSetChanged();
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();

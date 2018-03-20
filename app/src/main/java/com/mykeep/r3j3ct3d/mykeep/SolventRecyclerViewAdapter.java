@@ -106,6 +106,8 @@ public class SolventRecyclerViewAdapter extends RecyclerView.Adapter<SolventView
             holder.title.setBackgroundColor(Color.parseColor(_itemList.get(position).getColor()));
         if (!holder.content.getText().toString().isEmpty())
             holder.content.setBackgroundColor(Color.parseColor(_itemList.get(position).getColor()));
+        holder.color = _itemList.get(position).getColor();
+        holder.creationDate = _itemList.get(position).getCreationDate();
     }
 
     @Override
